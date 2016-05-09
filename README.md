@@ -1,6 +1,8 @@
 # ts3info
 Sencillo script que usa JQUERY principalmente para ver información sobre el estado de un servidor de Teamspeak 3.
-El estado del servidor se comprueba a través de la API de <a href="https://www.planetteamspeak.com/">PlanetTeamspeak.com</a>
+El estado del servidor se comprueba a través de la API de <a href="https://www.planetteamspeak.com/">PlanetTeamspeak.com</a>, que interactúa directamente con la lista pública de servidores de Teamspeak.
+
+GET https://api.planetteamspeak.com/serverstatus/IP:PUERTO/
 
 Con este script podrás ver los siguientes atributos del servidor:
 <ul>
