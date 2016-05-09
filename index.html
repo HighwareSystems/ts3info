@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.0.min.js"></script>
+    <script>
+		ip="IP:PUERTO"; //REEMPLAZAR POR LA IP DE TU SERVIDOR
+$.getJSON('https://api.planetteamspeak.com/serverstatus/'+ip+'/', function(json)
+{
+    if(json.status == 'success')
+    {  
+	
+		//Comprobar estado del servidor
+        if(json.result.online){
+			$('#direccionIP').html('<span>'+ip+'</span>');//Direccion IP del servidor
+			$('#nombre').html(json.result.name);//Nombre del servidor, mostrado en 'Nombre: '
+			$('#titulo').html(json.result.name);//Nombre del servidor, mostrado en el titulo principal
+			$('#pais').html(json.result.country);//Localización del servidor
+            $('#estado').html('<span style="font-size:15px;color:green;"><strong> ONLINE</strong></span>');//Mensaje de servidor ONLINE
+        }else{
+            $('#estado').html('<span style="font-size:15px;color:red;"><strong> OFFLINE</strong></span>');//Mensaje de servidor OFFLINE
+        }
+		
+		//Usuarios (actuales/totales)
+        $('#usuarios').html(json.result.users + ' / ' + json.result.slots);
+		
+		//Comprobar si el servidor tiene contraseña
+        if(json.result.password){
+            $('#contrasena').html('<span>Si</span>');
+        }else{
+            $('#contrasena').html('<span>No</span>');
+        }
+		
+		if(json.result.premium){
+            $('#licencia').html('<span>Si</span>');
+        }else{
+            $('#licencia').html('<span>No</span>');
+        }
+    }
+    else
+    {
+        $('#estado').html('<span> Servidor no encontrado.</span>');
+    }
+});
+
+    </script>
+</head>
+<body>
+
+    <div class="container">
+
+        <h1 id="titulo"></h1>
+
+        <div ><!--Nombre del servidor-->
+            <div style="float:left;"><strong>Nombre: </strong> </div>
+            <div id="nombre" style="float:left;">-</div>
+        </div>
+		
+		<div style="clear:both;"><!--IP del servidor-->
+            <div style="float:left;"><strong>IP:</strong></div>
+            <div  id="direccionIP" style="float:left;">-</div>
+        </div>
+		
+        <div style="clear:both;"><!--Estado del servidor-->
+            <div  style="float:left;"><strong>Estado: </strong> </div>
+            <div  id="estado" style="float:left;">-</div>
+        </div>
+		
+        <div style="clear:both;"><!--Usuarios del servidor-->
+            <div style="float:left;"><strong>Usuarios:</strong></div>
+            <div id="usuarios" style="float:left;">-</div>
+        </div>
+		<div style="clear:both;"><!--Usuarios del servidor-->
+            <div style="float:left;"><strong>Licencia:</strong></div>
+            <div id="licencia" style="float:left;">-</div>
+        </div>
+		
+		<div style="clear:both;"><!--País del servidor-->
+            <div style="float:left;"><strong>Pa&iacute;s: </strong></div>
+            <div id="pais" style="float:left;">-</div>
+        </div>
+		
+        <div style="clear:both;"><!--Contraseña del servidor-->
+            <div style="float:left;"><strong>Contrase&ntilde;a:</strong></div>
+            <div id="contrasena" style="float:left;">-</div>
+        </div>
+        
+
+    </div>
+
+</body>
+</html>
