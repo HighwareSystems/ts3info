@@ -14,3 +14,5 @@ Con este script podrás ver los siguientes atributos del servidor:
   <li><strong>Localización del servidor</strong><i> (json.result.country)</i><strong>:</strong> filtro por país.</li>
   <li><strong>Licencia </strong><i>(json.result.premium)</i><strong>:</strong> valores 'si' o 'no'.</li>
 </ul>
+
+version 1.0 - 09/05/2016
